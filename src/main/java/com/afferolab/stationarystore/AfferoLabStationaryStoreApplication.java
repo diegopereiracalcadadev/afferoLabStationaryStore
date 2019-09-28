@@ -1,29 +1,48 @@
 package com.afferolab.stationarystore;
 
+import com.afferolab.stationarystore.core.Product;
+import com.afferolab.stationarystore.db.ProductsDAO;
+import com.afferolab.stationarystore.resources.ProductsResource;
+
 import io.dropwizard.Application;
+import io.dropwizard.db.DataSourceFactory;
+import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
 public class AfferoLabStationaryStoreApplication extends Application<AfferoLabStationaryStoreConfiguration> {
 
-    public static void main(final String[] args) throws Exception {
-        new AfferoLabStationaryStoreApplication().run(args);
-    }
+	private final HibernateBundle<AfferoLabStationaryStoreConfiguration> hibernateBundle = new HibernateBundle<AfferoLabStationaryStoreConfiguration>(
+			Product.class) {
 
-    @Override
-    public String getName() {
-        return "AfferoLabStationaryStore";
-    }
+		@Override
+		public DataSourceFactory getDataSourceFactory(AfferoLabStationaryStoreConfiguration config) {
 
-    @Override
-    public void initialize(final Bootstrap<AfferoLabStationaryStoreConfiguration> bootstrap) {
-        // TODO: application initialization
-    }
+			return config.getDataSourceFactory();
+		}
 
-    @Override
-    public void run(final AfferoLabStationaryStoreConfiguration configuration,
-                    final Environment environment) {
-        // TODO: implement application
-    }
+	};
+
+	public static void main(final String[] args) throws Exception {
+		new AfferoLabStationaryStoreApplication().run(args);
+	}
+
+	@Override
+	public String getName() {
+		return "AfferoLabStationaryStore";
+	}
+
+	@Override
+	public void initialize(final Bootstrap<AfferoLabStationaryStoreConfiguration> bootstrap) {
+		bootstrap.addBundle(hibernateBundle);
+	}
+
+	@Override
+	public void run(final AfferoLabStationaryStoreConfiguration configuration, final Environment environment) {
+
+		final ProductsDAO productsDAO = new ProductsDAO(hibernateBundle.getSessionFactory());
+        environment.jersey().register(new ProductsResource(productsDAO));
+
+	}
 
 }
