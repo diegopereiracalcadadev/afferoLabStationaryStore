@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
   constructor(private http: HttpClient,
-              private categoriesService: CategoriesService) { }
+    private categoriesService: CategoriesService) { }
 
   fetchCategories() {
     this.http
@@ -18,5 +18,11 @@ export class DataStorageService {
       .subscribe(categories => {
         this.categoriesService.setCategories(categories)
       });
+  }
+
+  createCategory(category: Category): Observable<any> {
+    console.log('DataStorageService - Trying to create a category... ', category);
+    return this.http
+      .put(`http://localhost:4200/categories/new?title=${category.title}&description=${category.description}`, {});
   }
 }

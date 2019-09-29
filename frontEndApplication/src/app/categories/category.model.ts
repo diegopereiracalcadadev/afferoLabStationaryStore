@@ -1,11 +1,9 @@
 export class Category {
-    public name: string;
+    public title: string;
     public description: string;
-    public imagePath: string;
 
-    constructor(name: string, desc: string, imagePath: string){
-        this.name = name;
-        this.description = desc;
-        this.imagePath = imagePath;
+    constructor(title: string, description: string){
+        this.title = title;
+        this.description = description;
     }
 }

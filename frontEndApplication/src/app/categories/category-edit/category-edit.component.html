@@ -1,1 +1,15 @@
-<p>category-edit works!</p>
+<div class="row">
+    <div class="col-xs-12">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <div class="form-group">
+                <label for="title">Título:</label>
+                <input name="title" required ngModel class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="description">Descrição:</label>
+                <input name="description" required ngModel class="form-control">
+            </div>
+            <button>Gravar</button>
+        </form>
+    </div>
+</div>

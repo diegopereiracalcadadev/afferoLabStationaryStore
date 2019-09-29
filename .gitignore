@@ -49,3 +49,10 @@ frontEndApplication/typings
 # System Files
 frontEndApplication/.DS_Store
 frontEndApplication/Thumbs.db
+
+
+.settings/org.eclipse.jdt.apt.core.prefs
+.settings/org.eclipse.m2e.core.prefs
+target/classes/com/afferolab/stationarystore/AfferoLabStationaryStoreApplication.class
+target/classes/com/afferolab/stationarystore/AfferoLabStationaryStoreConfiguration.class
+dependency-reduced-pom.xml
