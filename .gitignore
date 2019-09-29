@@ -1,2 +1,5 @@
 /bin/
 /target/
+./target
+target/
+target/classes/META-INF/maven/com.afferolab/AfferoLabStationaryStore/pom.properties

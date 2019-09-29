@@ -23,8 +23,12 @@ public class Product {
 	private long id;
     @Column(name = "COD_BARRAS")
 	private long codBarras;
-	
+
     public Product() {}
+    
+    public Product(long id) {
+    	this.id = id;
+    }
     
 	public Product(long id, long codBarras) {
 		super();
