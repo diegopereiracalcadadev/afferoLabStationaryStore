@@ -1,8 +1,10 @@
 <a
+    routerLinkActive="active"
+    [routerLink]="[idx]"
     class="list-group-item clearfix"
     style="cursor:pointer;">
     <div class="pull-left">
-        <h4 class="lit-group-item-heading">{{category.name}}</h4>
+        <h4 class="lit-group-item-heading">{{category.title}}</h4>
         <p class="list-group-item-text">{{category.description}}</p>
     </div>
     <span class="pull-right">

@@ -7,14 +7,15 @@ import { CategoryDetailComponent } from './categories/category-detail/category-d
 
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'categories', pathMatch: 'full' },
-  {path: 'categories', component: CategoriesComponent, children:[
+  {path: '', redirectTo: 'categorias', pathMatch: 'full' },
+  {path: 'categorias', component: CategoriesComponent, children:[
       {path: '', component: CategoryHomeComponent },
       {path: 'new', component: CategoryEditComponent }, // Tem que vir antes da rota do ID 
       {path: ':id', component: CategoryDetailComponent }, // para o Angular não interpretar como um parÂmetro
       {path: ':id/edit', component: CategoryEditComponent },
   ]}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
