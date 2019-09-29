@@ -3,3 +3,49 @@
 ./target
 target/
 target/classes/META-INF/maven/com.afferolab/AfferoLabStationaryStore/pom.properties
+#====================
+
+# compiled output
+frontEndApplication/dist
+frontEndApplication/tmp
+frontEndApplication/out-tsc
+# Only exists if Bazel was run
+frontEndApplication/bazel-out
+
+# dependencies
+frontEndApplication/node_modules
+
+# profiling files
+chrome-profiler-events.json
+speed-measure-plugin.json
+
+# IDEs and editors
+frontEndApplication/.idea
+frontEndApplication/.project
+frontEndApplication/.classpath
+frontEndApplication/.c9/
+frontEndApplication/*.launch
+frontEndApplication/.settings/
+frontEndApplication/*.sublime-workspace
+
+# IDE - VSCode
+frontEndApplication/.vscode/*
+frontEndApplication/!.vscode/settings.json
+frontEndApplication/!.vscode/tasks.json
+frontEndApplication/!.vscode/launch.json
+frontEndApplication/!.vscode/extensions.json
+frontEndApplication/.history/*
+
+# misc
+frontEndApplication/.sass-cache
+frontEndApplication/connect.lock
+frontEndApplication/coverage
+frontEndApplication/libpeerconnection.log
+frontEndApplication/npm-debug.log
+frontEndApplication/yarn-error.log
+frontEndApplication/testem.log
+frontEndApplication/typings
+
+# System Files
+frontEndApplication/.DS_Store
+frontEndApplication/Thumbs.db
