@@ -65,8 +65,11 @@ public class ProductsResource {
 	@Path("/{id}/edit")
 	@UnitOfWork
 	public Response update(@PathParam("id") long id,
-							@QueryParam("codbarras") long codBarras) {
+							@QueryParam("codbarras") long codBarras,
+							@QueryParam("category_id") long categoryId) {
 		Product product = new Product(id, codBarras);
+		product.setCategory(new Category(categoryId));
+
 		product = productsDAO.update(product);
 		
 		return Response
