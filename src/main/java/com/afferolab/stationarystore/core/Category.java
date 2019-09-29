@@ -3,6 +3,7 @@ package com.afferolab.stationarystore.core;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Category {
 	private String title;
 	private String description;
 
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy="category", fetch = FetchType.LAZY)
 	private Set<Product> products;
 	
 	public Category() {}
