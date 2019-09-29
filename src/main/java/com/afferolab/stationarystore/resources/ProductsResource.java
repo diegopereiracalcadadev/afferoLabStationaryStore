@@ -12,6 +12,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.afferolab.stationarystore.core.Category;
 import com.afferolab.stationarystore.core.Product;
 import com.afferolab.stationarystore.db.ProductsDAO;
 
@@ -47,9 +48,11 @@ public class ProductsResource {
 	@PUT
 	@Path("/new")
 	@UnitOfWork
-	public Response create(@QueryParam("codbarras") long codBarras) {
+	public Response create(@QueryParam("codbarras") long codBarras,
+							@QueryParam("category_id") long categoryId) {
 		Product product = new Product();
 		product.setCodBarras(codBarras);
+		product.setCategory(new Category(categoryId));
 		
 		product = productsDAO.create(product);
 		

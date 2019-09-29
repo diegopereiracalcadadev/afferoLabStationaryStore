@@ -24,13 +24,15 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	
     @Column(name = "COD_BARRAS")
 	private long codBarras;
+    
     @ManyToOne
     @JoinColumn(name="category_id", nullable=true)
     private Category category;
     
-    
+
     public Product() {}
     
     public Product(long id) {
@@ -59,20 +61,10 @@ public class Product {
 		this.codBarras = codBarras;
 	}
 
-	public long getCategoryId() {
-		return category.getId();
-	}
-
-	public String getCategoryTitle() {
-		return category.getTitle();
-	}
-
-	@JsonIgnore
 	public Category getCategory() {
 		return category;
 	}
 
-	@JsonIgnore
 	public void setCategory(Category category) {
 		this.category = category;
 	}	

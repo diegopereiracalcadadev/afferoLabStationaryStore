@@ -1,11 +1,14 @@
 package com.afferolab.stationarystore.core;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +27,9 @@ public class Category {
 	private String title;
 	private String description;
 
+	@OneToMany(mappedBy="category")
+	private Set<Product> products;
+	
 	public Category() {}
     
 	public Category(long id, String title, String description) {
