@@ -32,7 +32,6 @@ public class ProductsResource {
 	@UnitOfWork
 	public List<Product> findAll() {
 		return productsDAO.findAll();
-
 	}
 	
 	@DELETE

@@ -1,7 +1,10 @@
 package com.afferolab.stationarystore;
 
+import com.afferolab.stationarystore.core.Category;
 import com.afferolab.stationarystore.core.Product;
+import com.afferolab.stationarystore.db.CategoriesDAO;
 import com.afferolab.stationarystore.db.ProductsDAO;
+import com.afferolab.stationarystore.resources.CategoriesResource;
 import com.afferolab.stationarystore.resources.ProductsResource;
 
 import io.dropwizard.Application;
@@ -13,7 +16,8 @@ import io.dropwizard.setup.Environment;
 public class AfferoLabStationaryStoreApplication extends Application<AfferoLabStationaryStoreConfiguration> {
 
 	private final HibernateBundle<AfferoLabStationaryStoreConfiguration> hibernateBundle = new HibernateBundle<AfferoLabStationaryStoreConfiguration>(
-			Product.class) {
+			Product.class,
+			Category.class) {
 
 		@Override
 		public DataSourceFactory getDataSourceFactory(AfferoLabStationaryStoreConfiguration config) {
@@ -42,6 +46,9 @@ public class AfferoLabStationaryStoreApplication extends Application<AfferoLabSt
 
 		final ProductsDAO productsDAO = new ProductsDAO(hibernateBundle.getSessionFactory());
         environment.jersey().register(new ProductsResource(productsDAO));
+		
+        final CategoriesDAO categoriesDAO = new CategoriesDAO(hibernateBundle.getSessionFactory());
+        environment.jersey().register(new CategoriesResource(categoriesDAO));
 
 	}
 

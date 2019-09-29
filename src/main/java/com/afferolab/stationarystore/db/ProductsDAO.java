@@ -22,9 +22,8 @@ public class ProductsDAO extends AbstractDAO<Product> {
 		return list(namedQuery(Product.FIND_ALL));
 	}
 
-	public Response delete(long id) {
+	public void delete(long id) {
 		this.currentSession().delete(new Product(id));
-		return null;
 	}
 
 	public Product create(Product product) {
