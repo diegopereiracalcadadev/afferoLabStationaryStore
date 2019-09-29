@@ -28,6 +28,7 @@ public class Category {
     
 	public Category(long id, String title, String description) {
 		super();
+		
 		this.id = id;
 		this.title = title;
 		this.description = description;
