@@ -31,4 +31,8 @@ public class ProductsDAO extends AbstractDAO<Product> {
 		return this.persist(product);
 	}
 
+	public Product update(Product product) {
+		return super.persist(product);
+	}
+
 }

@@ -44,7 +44,7 @@ public class ProductsResource {
 				.ok("Product deleted")
 				.build();
 	}
-	
+
 	@PUT
 	@Path("/new")
 	@UnitOfWork
@@ -59,4 +59,16 @@ public class ProductsResource {
 			.build();
 	}
 
+	@PUT
+	@Path("/{id}/edit")
+	@UnitOfWork
+	public Response update(@PathParam("id") long id,
+							@QueryParam("codbarras") long codBarras) {
+		Product product = new Product(id, codBarras);
+		product = productsDAO.update(product);
+		
+		return Response
+			.ok(product)
+			.build();
+	}
 }
