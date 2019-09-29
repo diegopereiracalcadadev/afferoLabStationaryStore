@@ -10,7 +10,7 @@
             <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
                 <ul class="nav navbar-nav">
                     <li><a href="#">Produtos</a></li>
-                    <li><a href="#">Categorias</a></li>
+                    <li routerLinkActive="active"><a [routerLink]="categories">Categorias</a></li>
                 </ul>
             </div>
         </div>
