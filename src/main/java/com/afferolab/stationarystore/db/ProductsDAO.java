@@ -12,7 +12,7 @@ import io.dropwizard.hibernate.AbstractDAO;
 
 public class ProductsDAO extends AbstractDAO<Product> {
 
-	private static final String NOT_EXISTING_OBJECT = "Objeto não existente. Nenhuma alteração foi feita.";
+	//private static final String NOT_EXISTING_OBJECT = "Objeto não existente. Nenhuma alteração foi feita.";
 
 	public ProductsDAO(SessionFactory sessionFactory) {
 		super(sessionFactory);
@@ -25,6 +25,10 @@ public class ProductsDAO extends AbstractDAO<Product> {
 	public Response delete(long id) {
 		this.currentSession().delete(new Product(id));
 		return null;
+	}
+
+	public Product create(Product product) {
+		return this.persist(product);
 	}
 
 }
