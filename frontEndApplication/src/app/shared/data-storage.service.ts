@@ -25,4 +25,11 @@ export class DataStorageService {
     return this.http
       .put(`http://localhost:4200/categories/new?title=${category.title}&description=${category.description}`, {});
   }
+
+  updateCategory(category: Category): Observable<any> {
+    console.log('DataStorageService - Trying to create a category... ', category);
+    return this.http
+      .put(`http://localhost:4200/categories/${category.id}/edit?title=${category.title}&description=${category.description}`, {});
+  }
+
 }

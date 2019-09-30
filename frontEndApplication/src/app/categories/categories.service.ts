@@ -22,7 +22,10 @@ export class CategoriesService {
     }
     
     getCategory(id: number) {
-        return this.categories[id];
+        return this.categories.filter((category) => {
+            console.log(category);
+            return id == category.id;
+        })[0];
     }
     
     create(category: Category) {

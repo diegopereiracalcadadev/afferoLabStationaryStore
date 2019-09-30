@@ -10,13 +10,13 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./category-edit.component.css']
 })
 export class CategoryEditComponent implements OnInit {
-
-  id: number;
+  
   editMode: boolean = false;
 
-  title: string;
-  description: string;
-
+  id: number;
+  title: string = '';
+  description: string = '';
+  
   constructor(private route: ActivatedRoute,
     private categoriesService: CategoriesService,
     private dataStorageService: DataStorageService,
@@ -28,9 +28,8 @@ export class CategoryEditComponent implements OnInit {
         (params: Params) => {
           this.id = +params['id'];
           this.editMode = params['id'] != null;
-
+          
           if (this.editMode) {
-            console.log("modo de edição ativado");
             let category = this.categoriesService.getCategory(this.id);
             this.title = category.title;
             this.description = category.description;
@@ -40,11 +39,14 @@ export class CategoryEditComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.dataStorageService.createCategory(form.value)
+    if(this.editMode){
+      form.value.id = this.id;
+      this.dataStorageService.updateCategory(form.value)
       .subscribe(
         (opa: any) => {
           if(opa != undefined && opa.id != undefined){
             alert("Categoria cadastrada");
+            this.dataStorageService.fetchCategories();
             this.router.navigate(['/categorias']);
           } else {
             let errorMessage = "Houve um erro ao tentar cadastrar a categoria";
@@ -53,5 +55,21 @@ export class CategoryEditComponent implements OnInit {
           }
         }
       );
+    } else {
+      this.dataStorageService.createCategory(form.value)
+        .subscribe(
+          (opa: any) => {
+            if(opa != undefined && opa.id != undefined){
+              alert("Categoria cadastrada");
+              this.dataStorageService.fetchCategories();
+              this.router.navigate(['/categorias']);
+            } else {
+              let errorMessage = "Houve um erro ao tentar cadastrar a categoria";
+              alert(errorMessage);
+              console.log(errorMessage, opa);
+            }
+          }
+        );
+    }
   }
 }
