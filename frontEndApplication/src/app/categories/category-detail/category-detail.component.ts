@@ -37,12 +37,13 @@ export class CategoryDetailComponent implements OnInit {
   onDeleteCategory(){
     this.dataStorageService.deleteCategory(this.id)
       .subscribe(
-        (res) => {
-          console.log(res);
+        (res: any) => {
           if(res != undefined && res.message != undefined){
             alert(res.message);
             this.router.navigate(['/categorias']);
             this.dataStorageService.fetchCategories();
+          } else {
+            alert("Erro ao tentar excluir a categoria.");
           }
         }
       );
