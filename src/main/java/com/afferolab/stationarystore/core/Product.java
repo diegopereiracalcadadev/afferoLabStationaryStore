@@ -27,8 +27,12 @@ public class Product {
 	
     @Column(name = "COD_BARRAS")
 	private String codBarras;
+    private String name;
+    private String description;
+	private int quantity;
     
-    @ManyToOne
+
+	@ManyToOne
     @JoinColumn(name="category_id", nullable=true)
     private Category category;
     
@@ -39,10 +43,12 @@ public class Product {
     	this.id = id;
     }
     
-	public Product(long id, String codBarras) {
+	public Product(String codBarras, String name, String description, int quantity) {
 		super();
-		this.id = id;
 		this.codBarras = codBarras;
+		this.name = name;
+		this.description = description;
+		this.quantity = quantity;
 	}
 
 	public long getId() {
@@ -68,4 +74,27 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}	
+	public int getQuantity() {
+		return quantity;
+	}
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

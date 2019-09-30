@@ -42,7 +42,7 @@ public class ProductsResource {
 	public Response delete(@PathParam("id") LongParam id) {
 		productsDAO.delete(id.get());
 		return Response
-				.ok(Util.createMsgJson("Categoria deletada."))
+				.ok(Util.createMsgJson("Produto deletado."))
 				.build();
 	}
 
@@ -50,9 +50,15 @@ public class ProductsResource {
 	@Path("/new")
 	@UnitOfWork
 	public Response create(@QueryParam("codBarras") String codBarras,
+							@QueryParam("name") String name,
+							@QueryParam("description") String description,
+							@QueryParam("quantity") int quantity,
 							@QueryParam("category_id") long categoryId) {
-		Product product = new Product();
-		product.setCodBarras(codBarras);
+		Product product = new Product(
+								codBarras,
+								name,
+								description,
+								quantity);
 		product.setCategory(new Category(categoryId));
 		
 		product = productsDAO.create(product);
@@ -67,8 +73,12 @@ public class ProductsResource {
 	@UnitOfWork
 	public Response update(@PathParam("id") long id,
 							@QueryParam("codBarras") String codBarras,
+							@QueryParam("name") String name,
+							@QueryParam("description") String description,
+							@QueryParam("quantity") int quantity,
 							@QueryParam("category_id") long categoryId) {
-		Product product = new Product(id, codBarras);
+		Product product = new Product(codBarras, name, description, quantity );
+		product.setId(id);
 		product.setCategory(new Category(categoryId));
 
 		product = productsDAO.update(product);
