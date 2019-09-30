@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 
 import com.afferolab.stationarystore.core.Category;
 import com.afferolab.stationarystore.db.CategoriesDAO;
+import com.afferolab.stationarystore.util.Util;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
@@ -41,7 +42,7 @@ public class CategoriesResource {
 	public Response delete(@PathParam("id") LongParam id) {
 		categoriesDAO.delete(id.get());
 		return Response
-				.ok(createMsgJson("Categoria deletada."))
+				.ok(Util.createMsgJson("Categoria deletada."))
 				.build();
 	}
 
@@ -75,11 +76,5 @@ public class CategoriesResource {
 			.ok(category)
 			.build();
 	}
-	private String createMsgJson(String string) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("{\"message\": \"");
-		sb.append(string);
-		sb.append("\"}");
-		return sb.toString();
-	}
+	
 }

@@ -26,7 +26,7 @@ public class Product {
 	private long id;
 	
     @Column(name = "COD_BARRAS")
-	private long codBarras;
+	private String codBarras;
     
     @ManyToOne
     @JoinColumn(name="category_id", nullable=true)
@@ -39,7 +39,7 @@ public class Product {
     	this.id = id;
     }
     
-	public Product(long id, long codBarras) {
+	public Product(long id, String codBarras) {
 		super();
 		this.id = id;
 		this.codBarras = codBarras;
@@ -53,11 +53,11 @@ public class Product {
 		this.id = id;
 	}
 
-	public long getCodBarras() {
+	public String getCodBarras() {
 		return codBarras;
 	}
 
-	public void setCodBarras(long codBarras) {
+	public void setCodBarras(String codBarras) {
 		this.codBarras = codBarras;
 	}
 

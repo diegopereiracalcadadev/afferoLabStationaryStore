@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 import com.afferolab.stationarystore.core.Category;
 import com.afferolab.stationarystore.core.Product;
 import com.afferolab.stationarystore.db.ProductsDAO;
+import com.afferolab.stationarystore.util.Util;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
@@ -41,14 +42,14 @@ public class ProductsResource {
 	public Response delete(@PathParam("id") LongParam id) {
 		productsDAO.delete(id.get());
 		return Response
-				.ok("Product deleted")
+				.ok(Util.createMsgJson("Categoria deletada."))
 				.build();
 	}
 
 	@PUT
 	@Path("/new")
 	@UnitOfWork
-	public Response create(@QueryParam("codbarras") long codBarras,
+	public Response create(@QueryParam("codBarras") String codBarras,
 							@QueryParam("category_id") long categoryId) {
 		Product product = new Product();
 		product.setCodBarras(codBarras);
@@ -65,7 +66,7 @@ public class ProductsResource {
 	@Path("/{id}/edit")
 	@UnitOfWork
 	public Response update(@PathParam("id") long id,
-							@QueryParam("codbarras") long codBarras,
+							@QueryParam("codBarras") String codBarras,
 							@QueryParam("category_id") long categoryId) {
 		Product product = new Product(id, codBarras);
 		product.setCategory(new Category(categoryId));
