@@ -1,4 +1,4 @@
-import { DataStorageService } from './../../shared/data-storage.service';
+import { DataStorageService } from '../../shared/categories-data-storage.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Category } from '../category.model';
 import { CategoriesService } from '../categories.service';

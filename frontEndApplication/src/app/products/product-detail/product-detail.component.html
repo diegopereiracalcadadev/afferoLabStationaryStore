@@ -1,0 +1,23 @@
+<div class="row">
+        <div class="col-xs-12">
+            <h2>{{product.title}}</h2>
+        </div>
+        <div class="col-xs-12">
+            <h3>{{product.description}}</h3>
+        </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="btn-group">
+            <button class="btn btn-primary"
+                (click)="onEditProduct()"
+                style="margin-right: 20px;">
+                Editar Produto
+            </button>
+            <button class="btn btn-danger"
+                (click)="onDeleteProduct()">
+                Remover Produto
+            </button>
+        </div>
+    </div>
+</div>
