@@ -2,12 +2,18 @@
     <div class="col-xs-12">
         <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
             <div class="form-group">
-                <label for="title">Título:</label>
-                <input name="title" [(ngModel)]="title"  required class="form-control">
+                <label for="codBarras">Cód. Barras:</label>
+                <input name="codBarras" [(ngModel)]="codBarras"  required class="form-control">
             </div>
             <div class="form-group">
                 <label for="description">Descrição:</label>
                 <input name="description" required [(ngModel)]="description" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="categoryId">Categoria:</label>
+                <select name="categoryId" required [(ngModel)]="categoryId" class="form-control">
+                    <option value={{category.id}} *ngFor="let category of categories">{{category.title}}</option>
+                </select>
             </div>
             <button>Gravar</button>
         </form>

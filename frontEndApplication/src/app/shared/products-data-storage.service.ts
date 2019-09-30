@@ -6,7 +6,7 @@ import { Product } from '../products/product.model';
 
 
 @Injectable({ providedIn: 'root' })
-export class DataStorageService {
+export class ProductsDataStorageService {
   constructor(private http: HttpClient,
               private productsService: ProductsService) { }
  
@@ -24,13 +24,13 @@ export class DataStorageService {
     createProduct(product: Product): Observable<any> {
       console.log('DataStorageService - Trying to create a product... ', product);
       return this.http
-        .put(`http://localhost:4200/rest/products/new?title=${product.title}&description=${product.description}`, {});
+        .put(`http://localhost:4200/rest/products/new?codBarras=${product.codBarras}&description=${product.description}&category_id=${product.categoryId}`, {});
     }
   
     updateProduct(product: Product): Observable<any> {
       console.log('DataStorageService - Trying to create a product... ', product);
       return this.http
-        .put(`http://localhost:4200/rest/products/${product.id}/edit?title=${product.title}&description=${product.description}`, {});
+        .put(`http://localhost:4200/rest/products/${product.id}/edit?codBarras=${product.codBarras}&description=${product.description}&category_id=${product.categoryId}`, {});
     }
   
     deleteProduct(id: number) {

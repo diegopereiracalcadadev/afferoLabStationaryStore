@@ -1,4 +1,6 @@
-import { DataStorageService } from '../../shared/products-data-storage.service';
+import { CategoriesDataStorageService } from './../../shared/categories-data-storage.service';
+import { Category } from './../../categories/category.model';
+import { ProductsDataStorageService } from '../../shared/products-data-storage.service';
 import { ProductsService } from '../products.service';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -12,41 +14,56 @@ import { NgForm } from '@angular/forms';
 export class ProductEditComponent implements OnInit {
   
   editMode: boolean = false;
+  categories: Category[];
 
   id: number;
-  title: string = '';
+  codBarras: string = '';
   description: string = '';
+  categoryId: number = 0;
   
   constructor(private route: ActivatedRoute,
     private productsService: ProductsService,
-    private dataStorageService: DataStorageService,
+    private productsDataStorageService: ProductsDataStorageService,
+    private categoriesDataStorageService: CategoriesDataStorageService,
     private router: Router) { }
 
   ngOnInit() {
+
     this.route.params
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
           this.editMode = params['id'] != null;
+          this.productsDataStorageService
           
           if (this.editMode) {
             let product = this.productsService.getProduct(this.id);
-            this.title = product.title;
+            this.codBarras = product.codBarras;
             this.description = product.description;
+            this.categoryId = product.categoryId;
           }
         }
       )
+
+    this.categoriesDataStorageService.getCategories()
+        .subscribe(
+          (categories) => {
+            console.log("foi", categories);
+            this.categories = categories;
+          }
+        );
+
   }
 
   onSubmit(form: NgForm) {
     if(this.editMode){
       form.value.id = this.id;
-      this.dataStorageService.updateProduct(form.value)
+      this.productsDataStorageService.updateProduct(form.value)
       .subscribe(
         (opa: any) => {
           if(opa != undefined && opa.id != undefined){
-            alert("Produto cadastrada");
-            this.dataStorageService.fetchProducts();
+            alert("Produto cadastrado");
+            this.productsDataStorageService.fetchProducts();
             this.router.navigate(['/produtos']);
           } else {
             let errorMessage = "Houve um erro ao tentar cadastrar o produto";
@@ -56,12 +73,12 @@ export class ProductEditComponent implements OnInit {
         }
       );
     } else {
-      this.dataStorageService.createProduct(form.value)
+      this.productsDataStorageService.createProduct(form.value)
         .subscribe(
           (opa: any) => {
             if(opa != undefined && opa.id != undefined){
-              alert("Produto cadastrada");
-              this.dataStorageService.fetchProducts();
+              alert("Produto cadastrado");
+              this.productsDataStorageService.fetchProducts();
               this.router.navigate(['/produtos']);
             } else {
               let errorMessage = "Houve um erro ao tentar cadastrar o produto";

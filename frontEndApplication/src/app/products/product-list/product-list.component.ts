@@ -1,4 +1,4 @@
-import { DataStorageService } from '../../shared/products-data-storage.service';
+import { ProductsDataStorageService } from '../../shared/products-data-storage.service';
 import { Component, EventEmitter, Output, OnInit} from '@angular/core';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
@@ -16,7 +16,7 @@ export class ProductListComponent implements OnInit{
   subscription: Subscription;
   
   constructor(private productsService: ProductsService,
-              private dataStorageService: DataStorageService,
+              private productsDataStorageService: ProductsDataStorageService,
               private router: Router,
               private route: ActivatedRoute) { }
 
@@ -28,7 +28,7 @@ export class ProductListComponent implements OnInit{
         }
       );
     //this.products = this.productsService.getProducts();
-    this.dataStorageService.fetchProducts();
+    this.productsDataStorageService.fetchProducts();
 
     
   }

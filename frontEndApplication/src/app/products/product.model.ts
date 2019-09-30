@@ -1,11 +1,12 @@
 export class Product {
     public id: number;
-    public title: string;
+    public codBarras: string;
     public description: string;
+    public categoryId: number;
 
-    constructor(title: string, description: string, id: number){
-        this.title = title;
-        this.description = description;
+    constructor(codBarras: string, description: string, id: number){
         this.id = id;
+        this.codBarras = codBarras;
+        this.description = description;
     }
 }

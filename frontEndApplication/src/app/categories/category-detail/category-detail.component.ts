@@ -1,4 +1,4 @@
-import { DataStorageService } from '../../shared/categories-data-storage.service';
+import { CategoriesDataStorageService } from '../../shared/categories-data-storage.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Category } from '../category.model';
 import { CategoriesService } from '../categories.service';
@@ -15,7 +15,7 @@ export class CategoryDetailComponent implements OnInit {
   id: number;
   
   constructor(private categoriesService: CategoriesService,
-              private dataStorageService: DataStorageService,
+              private categoriesDataStorageService: CategoriesDataStorageService,
               private route: ActivatedRoute,
               private router: Router) { }
   
@@ -35,13 +35,13 @@ export class CategoryDetailComponent implements OnInit {
   }
 
   onDeleteCategory(){
-    this.dataStorageService.deleteCategory(this.id)
+    this.categoriesDataStorageService.deleteCategory(this.id)
       .subscribe(
         (res: any) => {
           if(res != undefined && res.message != undefined){
             alert(res.message);
             this.router.navigate(['/categorias']);
-            this.dataStorageService.fetchCategories();
+            this.categoriesDataStorageService.fetchCategories();
           } else {
             alert("Erro ao tentar excluir a categoria.");
           }

@@ -6,36 +6,43 @@ import { Observable } from 'rxjs';
 
 
 @Injectable({ providedIn: 'root' })
-export class DataStorageService {
+export class CategoriesDataStorageService {
   constructor(private http: HttpClient,
-              private categoriesService: CategoriesService) { }
+    private categoriesService: CategoriesService) { }
 
-    fetchCategories() {
-      this.http
-        .get<Category[]>(
-          'http://localhost:4200/rest/categories'
-        )
-        .subscribe(categories => {
-          this.categoriesService.setCategories(categories)
-        });
-    }
-  
-    createCategory(category: Category): Observable<any> {
-      console.log('DataStorageService - Trying to create a category... ', category);
-      return this.http
-        .put(`http://localhost:4200/rest/categories/new?title=${category.title}&description=${category.description}`, {});
-    }
-  
-    updateCategory(category: Category): Observable<any> {
-      console.log('DataStorageService - Trying to create a category... ', category);
-      return this.http
-        .put(`http://localhost:4200/rest/categories/${category.id}/edit?title=${category.title}&description=${category.description}`, {});
-    }
-  
-    deleteCategory(id: number) {
-      console.log('DataStorageService - Trying to delete a category... ', id);
-      return this.http
-        .delete(`http://localhost:4200/rest/categories/${id}`, {});
-    }
+  fetchCategories() {
+    this.http
+      .get<Category[]>(
+        'http://localhost:4200/rest/categories'
+      )
+      .subscribe(categories => {
+        this.categoriesService.setCategories(categories)
+      });
+  }
+
+  getCategories(): Observable<any> {
+    return this.http
+      .get<Category[]>(
+        'http://localhost:4200/rest/categories'
+      );
+  }
+
+  createCategory(category: Category): Observable<any> {
+    console.log('DataStorageService - Trying to create a category... ', category);
+    return this.http
+      .put(`http://localhost:4200/rest/categories/new?title=${category.title}&description=${category.description}`, {});
+  }
+
+  updateCategory(category: Category): Observable<any> {
+    console.log('DataStorageService - Trying to create a category... ', category);
+    return this.http
+      .put(`http://localhost:4200/rest/categories/${category.id}/edit?title=${category.title}&description=${category.description}`, {});
+  }
+
+  deleteCategory(id: number) {
+    console.log('DataStorageService - Trying to delete a category... ', id);
+    return this.http
+      .delete(`http://localhost:4200/rest/categories/${id}`, {});
+  }
 
 }

@@ -1,4 +1,4 @@
-import { DataStorageService } from '../../shared/products-data-storage.service';
+import { ProductsDataStorageService } from '../../shared/products-data-storage.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
@@ -15,7 +15,7 @@ export class ProductDetailComponent implements OnInit {
   id: number;
   
   constructor(private productsService: ProductsService,
-              private dataStorageService: DataStorageService,
+              private productsDataStorageService: ProductsDataStorageService,
               private route: ActivatedRoute,
               private router: Router) { }
   
@@ -35,13 +35,13 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onDeleteProduct(){
-    this.dataStorageService.deleteProduct(this.id)
+    this.productsDataStorageService.deleteProduct(this.id)
       .subscribe(
         (res: any) => {
           if(res != undefined && res.message != undefined){
             alert(res.message);
             this.router.navigate(['/produtos']);
-            this.dataStorageService.fetchProducts();
+            this.productsDataStorageService.fetchProducts();
           } else {
             alert("Erro ao tentar excluir o produto.");
           }

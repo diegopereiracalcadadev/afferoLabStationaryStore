@@ -1,4 +1,4 @@
-import { DataStorageService } from '../../shared/categories-data-storage.service';
+import { CategoriesDataStorageService } from '../../shared/categories-data-storage.service';
 import { CategoriesService } from './../categories.service';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class CategoryEditComponent implements OnInit {
   
   constructor(private route: ActivatedRoute,
     private categoriesService: CategoriesService,
-    private dataStorageService: DataStorageService,
+    private dataStorageService: CategoriesDataStorageService,
     private router: Router) { }
 
   ngOnInit() {
