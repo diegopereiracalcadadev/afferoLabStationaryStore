@@ -17,7 +17,6 @@ export class ProductsComponent implements OnInit {
     this.productsService.productSelected
       .subscribe(
         (product: Product) => {
-          console.log("evento capturado: productSelected", product);
           this.selectedProduct = product;
         }
       );

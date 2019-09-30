@@ -23,12 +23,10 @@ export class ProductsService {
     
     getProduct(id: number) {
         return this.products.filter((product) => {
-            console.log(product);
             return id == product.id;
         })[0];
     }
     
     create(product: Product) {
-        console.log('create', product);
     }
 } 

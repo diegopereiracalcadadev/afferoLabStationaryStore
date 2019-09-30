@@ -18,7 +18,9 @@ export class ProductEditComponent implements OnInit {
 
   id: number;
   codBarras: string = '';
+  name: string = '';
   description: string = '';
+  quantity: number = 0;
   categoryId: number = 0;
   
   constructor(private route: ActivatedRoute,
@@ -39,7 +41,9 @@ export class ProductEditComponent implements OnInit {
           if (this.editMode) {
             let product = this.productsService.getProduct(this.id);
             this.codBarras = product.codBarras;
+            this.name = product.name;
             this.description = product.description;
+            this.quantity = product.quantity;
             this.categoryId = product.categoryId;
           }
         }
@@ -48,7 +52,6 @@ export class ProductEditComponent implements OnInit {
     this.categoriesDataStorageService.getCategories()
         .subscribe(
           (categories) => {
-            console.log("foi", categories);
             this.categories = categories;
           }
         );

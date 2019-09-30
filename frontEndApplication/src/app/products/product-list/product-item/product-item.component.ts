@@ -21,7 +21,6 @@ export class ProductItemComponent implements OnInit  {
     this.route.params
       .subscribe(
         (params: Params) => {
-          console.log("edit moudou...", params );
         }
       );
   }

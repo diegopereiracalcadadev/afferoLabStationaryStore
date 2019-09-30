@@ -24,17 +24,16 @@ export class ProductsDataStorageService {
     createProduct(product: Product): Observable<any> {
       console.log('DataStorageService - Trying to create a product... ', product);
       return this.http
-        .put(`http://localhost:4200/rest/products/new?codBarras=${product.codBarras}&description=${product.description}&category_id=${product.categoryId}`, {});
+        .put(`http://localhost:4200/rest/products/new?codBarras=${product.codBarras}&name=${product.name}&description=${product.description}&quantity=${product.quantity}&category_id=${product.categoryId}`, {});
     }
   
     updateProduct(product: Product): Observable<any> {
-      console.log('DataStorageService - Trying to create a product... ', product);
       return this.http
-        .put(`http://localhost:4200/rest/products/${product.id}/edit?codBarras=${product.codBarras}&description=${product.description}&category_id=${product.categoryId}`, {});
+        .put(`http://localhost:4200/rest/products/${product.id}/edit?codBarras=${product.codBarras}&name=${product.name}&description=${product.description}&quantity=${product.quantity}&category_id=${product.categoryId}`, {});
+
     }
   
     deleteProduct(id: number) {
-      console.log('DataStorageService - Trying to delete a product... ', id);
       return this.http
         .delete(`http://localhost:4200/rest/products/${id}`, {});
     }
