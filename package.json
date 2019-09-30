@@ -1,0 +1,22 @@
+{
+  "name": "afferolabstationarystore",
+  "version": "1.0.0",
+  "description": "How to start the AfferoLabStationaryStore application ---",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently --kill-others \"mvn package && java -jar target/AfferoLabStationaryStore-1.0-SNAPSHOT.jar server config.yml\" \"cd frontEndApplication && npm install && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegopereiracalcadadev/afferoLabStationaryStore.git"
+  },
+  "author": "Diego.Calcada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegopereiracalcadadev/afferoLabStationaryStore/issues"
+  },
+  "homepage": "https://github.com/diegopereiracalcadadev/afferoLabStationaryStore#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.2"
+  }
+}

@@ -49,7 +49,7 @@ frontEndApplication/typings
 # System Files
 frontEndApplication/.DS_Store
 frontEndApplication/Thumbs.db
-
+node_modules/
 
 .settings/org.eclipse.jdt.apt.core.prefs
 .settings/org.eclipse.m2e.core.prefs
