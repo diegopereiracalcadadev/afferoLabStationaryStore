@@ -1,3 +1,4 @@
+import { DataStorageService } from './../../shared/data-storage.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Category } from '../category.model';
 import { CategoriesService } from '../categories.service';
@@ -14,6 +15,7 @@ export class CategoryDetailComponent implements OnInit {
   id: number;
   
   constructor(private categoriesService: CategoriesService,
+              private dataStorageService: DataStorageService,
               private route: ActivatedRoute,
               private router: Router) { }
   
@@ -26,13 +28,23 @@ export class CategoryDetailComponent implements OnInit {
           this.category = this.categoriesService.getCategory(this.id);
         }
       );
-    
   }
 
   onEditCategory(){
     this.router.navigate(['edit'], { relativeTo: this.route});
-    // ou poderia repassar o id:
-    // this.router.navigate(['../', this.id, 'edit'], { relativeTo: this.route});
   }
 
+  onDeleteCategory(){
+    this.dataStorageService.deleteCategory(this.id)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          if(res != undefined && res.message != undefined){
+            alert(res.message);
+            this.router.navigate(['/categorias']);
+            this.dataStorageService.fetchCategories();
+          }
+        }
+      );
+  }
 }

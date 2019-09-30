@@ -10,26 +10,33 @@ export class DataStorageService {
   constructor(private http: HttpClient,
     private categoriesService: CategoriesService) { }
 
-  fetchCategories() {
+    fetchCategories() {
     this.http
-      .get<Category[]>(
+    .get<Category[]>(
         'http://localhost:4200/categories'
       )
       .subscribe(categories => {
         this.categoriesService.setCategories(categories)
       });
   }
-
+  
   createCategory(category: Category): Observable<any> {
     console.log('DataStorageService - Trying to create a category... ', category);
     return this.http
-      .put(`http://localhost:4200/categories/new?title=${category.title}&description=${category.description}`, {});
+    .put(`http://localhost:4200/categories/new?title=${category.title}&description=${category.description}`, {});
   }
-
+  
   updateCategory(category: Category): Observable<any> {
     console.log('DataStorageService - Trying to create a category... ', category);
     return this.http
       .put(`http://localhost:4200/categories/${category.id}/edit?title=${category.title}&description=${category.description}`, {});
-  }
+    }
 
-}
+    deleteCategory(id: number) {
+      console.log('DataStorageService - Trying to delete a category... ', id);
+      return this.http
+        .delete(`http://localhost:4200/categories/${id}`, {});
+      }
+    
+
+  }

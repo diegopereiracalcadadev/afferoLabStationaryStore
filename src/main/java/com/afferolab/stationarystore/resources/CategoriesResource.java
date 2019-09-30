@@ -41,9 +41,10 @@ public class CategoriesResource {
 	public Response delete(@PathParam("id") LongParam id) {
 		categoriesDAO.delete(id.get());
 		return Response
-				.ok("Category deleted")
+				.ok(createMsgJson("Categoria deletada."))
 				.build();
 	}
+
 
 	@PUT
 	@Path("/new")
@@ -73,5 +74,12 @@ public class CategoriesResource {
 		return Response
 			.ok(category)
 			.build();
+	}
+	private String createMsgJson(String string) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{\"message\": \"");
+		sb.append(string);
+		sb.append("\"}");
+		return sb.toString();
 	}
 }
