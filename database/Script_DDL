@@ -1,0 +1,46 @@
+create database afferolab; 
+use afferolab;
+
+CREATE TABLE CATEGORIES (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  description VARCHAR(255),
+  PRIMARY KEY (id)
+);
+
+
+CREATE TABLE PRODUCTS (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  cod_barras VARCHAR(50) NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  quantity int NOT NULL,
+  description VARCHAR(255),
+  category_id BIGINT NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_PRODUCTS_CATEGORY FOREIGN KEY (category_id)
+         REFERENCES CATEGORIES (id)
+);
+
+-- CARGA INICIAL
+INSERT INTO afferolab.CATEGORIES
+(id, title, description)
+VALUES(1, 'Categoria A', 'Apenas para fim de demonstração');
+COMMIT;
+INSERT INTO afferolab.CATEGORIES
+(id, title, description)
+VALUES(2, 'Categoria B', 'Apenas para fim de demonstração');
+COMMIT;
+
+INSERT INTO afferolab.PRODUCTS
+(id, cod_barras, name, quantity, description, category_id)
+VALUES(1, '001', 'Produto de Teste', 5, 'Descrição do produto de Teste', 1);
+COMMIT;
+INSERT INTO afferolab.PRODUCTS
+(id, cod_barras, name, quantity, description, category_id)
+VALUES(2, '002', 'Produto de Teste 02', 10, 'Descrição do produto de Teste 02', 2);
+COMMIT;
+
+------- ROLLBACK ----------
+-- DROP TABLE PRODUCTS;
+-- DROP TABLE CATEGORIES;
+-- DROP DATABASE afferolab;
