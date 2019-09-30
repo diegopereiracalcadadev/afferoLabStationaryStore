@@ -18,7 +18,7 @@ import com.afferolab.stationarystore.db.CategoriesDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
-@Path("/categories")
+@Path("/rest/categories")
 @Produces(MediaType.APPLICATION_JSON)
 public class CategoriesResource {
 

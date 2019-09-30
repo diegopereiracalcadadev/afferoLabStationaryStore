@@ -19,7 +19,7 @@ import com.afferolab.stationarystore.db.ProductsDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.LongParam;
 
-@Path("/products")
+@Path("/rest/products")
 @Produces(MediaType.APPLICATION_JSON)
 public class ProductsResource {
 

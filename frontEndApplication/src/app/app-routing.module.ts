@@ -11,11 +11,11 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: 'categorias', pathMatch: 'full' },
+  {path: '', redirectTo: 'produtos', pathMatch: 'full' },
   {path: 'categorias', component: CategoriesComponent, children:[
       {path: '', component: CategoryHomeComponent },
-      {path: 'new', component: CategoryEditComponent }, // Tem que vir antes da rota do ID 
-      {path: ':id', component: CategoryDetailComponent }, // para o Angular não interpretar como um parÂmetro
+      {path: 'new', component: CategoryEditComponent },  
+      {path: ':id', component: CategoryDetailComponent }, 
       {path: ':id/edit', component: CategoryEditComponent },
   ]},
   {path: 'produtos', component: ProductsComponent, children:[

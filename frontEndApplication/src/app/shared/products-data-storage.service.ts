@@ -12,8 +12,9 @@ export class DataStorageService {
  
     fetchProducts() {
       this.http
-        .get<Product[]>(
-          'http://localhost:4200/products'
+        .get<any[]>(
+          'http://localhost:4200/rest/products'
+
         )
         .subscribe(products => {
           this.productsService.setProducts(products)
@@ -23,19 +24,19 @@ export class DataStorageService {
     createProduct(product: Product): Observable<any> {
       console.log('DataStorageService - Trying to create a product... ', product);
       return this.http
-        .put(`http://localhost:4200/products/new?title=${product.title}&description=${product.description}`, {});
+        .put(`http://localhost:4200/rest/products/new?title=${product.title}&description=${product.description}`, {});
     }
   
     updateProduct(product: Product): Observable<any> {
       console.log('DataStorageService - Trying to create a product... ', product);
       return this.http
-        .put(`http://localhost:4200/products/${product.id}/edit?title=${product.title}&description=${product.description}`, {});
+        .put(`http://localhost:4200/rest/products/${product.id}/edit?title=${product.title}&description=${product.description}`, {});
     }
   
     deleteProduct(id: number) {
       console.log('DataStorageService - Trying to delete a product... ', id);
       return this.http
-        .delete(`http://localhost:4200/products/${id}`, {});
+        .delete(`http://localhost:4200/rest/products/${id}`, {});
     }
   
 
